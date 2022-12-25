@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Student Form</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" >
+        <script
+        src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <!-- <script src="http://login2explore.com/jpdb/resources/js/0.0.3/jpdb-commons.js"></script>-->
+        <style>
+            #root{
+                height: 500px;
+            }
+            .part{
+                display: flex;
+                justify-content: center;
+                margin-top: 40px;
+
+
+            }
+            #head{
+                color: black;
+                margin-bottom: 14px;
+                text-align: center;
+                font-weight: 5px;
+            }
+            form{
+                margin-top: 0;
+
+                background-color:  #60a9ff;
+                margin-bottom: 4px;
+                padding-top: 9px;
+                padding-left: 60px;
+                padding-right: 60px;
+                border-radius: 5%;
+                width:435px ;
+                max-height: 670px;
+            }
+
+            .first{
+                color: white;
+                font-weight: 700;
+            }
+            #datetimepicker1,#birthtimepicker1{
+                color: white;
+                font-weight: 700;
+
+            }
+            #inputdate,#inputbd{
+                margin-left: 5%;
+                width: 200px;
+            }
+
+            #textt{
+                display: flex;
+                justify-content: center;
+                align-content: flex-start;
+                margin-top: 0%;
+                padding-top: 0%;
+                position: relative;
+                top: 0;
+            }
+            .form-error {
+                font-size:10px;
+                color: #b22b27;
+                text-align: right;
+                font-weight: 500;
+                height: 0;
+            }
+            button{
+                margin-bottom: 10px;
+                background-color: white;
+                border-color: white;
+                border-radius: 9px;
+                text-align: center;
+                padding: 5px;
+                width: 90px;
+                height: 40px;
+                color: gray;
+                display: flex;
+                justify-content: center;
+
+
+            }
+            #btnG{
+                display: flex;
+                flex-direction:row;
+                justify-content: space-around;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 id="head">STUDENT FORM</h1>
+        <div class='part'>
+            <form class='mainpart' method="post" >
+                <div class="row mb-3 first">
+                    <label for="stuName" class="col-sm-4 col-form-label">Full Name</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" placeholder="Name" 
+                               aria-label="First name" id='stuName' name='stuName' required autoComplete='off'/>
+                    </div>
+
+                </div>
+                <div class="form-outline row mb-3 first">
+
+                    <label class="form-label col-sm-4" for="Rollno">Roll no.</label>
+                    <div class="col-sm-8">
+                        <input type="text" id="Rollno" placeholder="Roll no."  name="Rollno" 
+                               class="form-control" onchange="getstu()"/>
+
+                    </div>
+                </div>
+                <div class="row mb-3 first">
+                    <label for="class" class="col-sm-4 col-form-label">Class</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" name='class' placeholder="Class"  
+                               id="class" />
+                    </div>
+                </div>
+                <div class="form-outline row mb-3 first">
+                    <label class="form-label col-sm-4" for="typePhone">Phone Number</label>
+
+                    <div class="col-sm-8">
+                        <input type="tel" id="typePhone" placeholder="eg: 8760001113" class="form-control " name='phone' required autoComplete='off'/>
+                    </div>
+
+                </div>
+                <div class="row mb-3 first">
+                    <label for="add"class="form-label col-sm-4" >Address</label>
+                    <div class="col-sm-8">
+                        <input type="text"class="form-control" id="add"  name='add' placeholder=" Main St, 654 Indore"  
+                               required autoComplete='off'/>
+                    </div>
+
+                </div>
+                <div class="row mb-3 first">
+                    <label for="inputgender" class="form-label col-sm-4" >Gender</label>
+                    <div class="col-sm-8">
+                        <select class="form-select" aria-label="Default select example"name='gender' id='inputgender' >
+                            <option selected>Your Gender</option>
+                            <option value="1">Female</option>
+                            <option value="2">Male</option>
+                            <option value="3">Other</option>
+                        </select></div>
+                </div>
+
+                <div class='input-group date row mb-3' id='datetimepicker1'>
+                    <label for="inputdate" class="form-label col-sm-4" >Enrollment-Date</label>
+                    <div class="col-sm-8">
+                        <input type='text' class="form-control" id="inputdate" placeholder="Enrollment-Date" name="inputdate"/>
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span></div>
+                </div>
+
+                <div class='input-group date row mb-3' id='birthtimepicker1'>
+                    <label for="inputbd" class="form-label col-sm-4" >Birthday</label>
+                    <div class="col-sm-8">
+                        <input type='text' class="form-control" id="inputbd"  placeholder="Birthday" name="inputbd"/>
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span></div>
+                </div>
+                <div id="btnG" >
+                    <button type="submit" class="bbutn"  id="save" onclick="saveStudent();">Save</button>
+                    <button type="submit" class="bbutn" id="update" onclick="updateStudent();" >Update</button>
+                    <button type="submit" class="bbutn" id="reset" onclick="resetForm();">Reset</button>
+                </div>
+            </form>
+
+        </div>
+        <script>
+            $("#stuName").focus();
+            function validateAndGetFormData() {
+                var stuNameVar = $("#stuName").val();
+                if (stuNameVar === "") {
+                    alert("student Name is Required Value");
+                    $("#stuName").focus();
+                    return "";
+                }
+                var rollNoVar = $("#Rollno").val();
+                if (rollNoVar === "") {
+                    alert("Roll no is Required Value");
+                    $("#Rollno").focus();
+                    return "";
+                }
+                var classVar = $("#class").val();
+                if (classVar === "") {
+                    alert("class is Required Value");
+                    $("#class").focus();
+                    return "";
+                }
+                var addVar = $("#add").val();
+                if (addVar === "") {
+                    alert("address is Required Value");
+                    $("#add").focus();
+                    return "";
+                }
+                var BirthdayVar = $("#inputbd").val();
+                if (BirthdayVar === "") {
+                    alert("date of birth is Required Value");
+                    $("#inputbd").focus();
+                    return "";
+                }
+                var enrollVar = $("#inputdate").val();
+                if (enrollVar === "") {
+                    alert("enrollment date is Required Value");
+                    $("#inputdate").focus();
+                    return "";
+                }
+
+
+                var jsonStrObj = {
+                    Rollno: rollNoVar,
+                    stuName: stuNameVar,
+                    class: classVar,
+                    add: addVar,
+                    inputbd: BirthdayVar,
+                    inputdate: enrollVar,
+                };
+                return JSON.stringify(jsonStrObj);
+            }
+            
+
+// This method is used to create PUT Json request.
+            function createPUTRequest(connToken, jsonObj, dbName, relName) {
+                var putRequest = "{\n"
+                        + "\"token\" : \""
+                        + connToken
+                        + "\","
+                        + "\"dbName\": \""
+                        + dbName
+                        + "\",\n" + "\"cmd\" : \"PUT\",\n"
+                        + "\"rel\" : \""
+                        + relName + "\","
+                        + "\"jsonStr\": \n"
+                        + jsonObj
+                        + "\n"
+                        + "}";
+                return putRequest;
+            }
+            function executeCommand(reqString, dbBaseUrl, apiEndPointUrl) {
+                var url = dbBaseUrl + apiEndPointUrl;
+                var jsonObj;
+                $.post(url, reqString, function(result) {
+                    jsonObj = JSON.parse(result);
+                }).fail(function(result) {
+                    var dataJsonObj = result.responseText;
+                    jsonObj = JSON.parse(dataJsonObj);
+                });
+                return jsonObj;
+            }
+
+
+            function resetForm() {
+                $("#Rollno").val("")
+                $("#stuName").val("");
+                $("#class").val("");
+                $("#add").val("");
+                $("#inputbd").val("");
+                $("#inputdate").val("");
+                $("#Rollno").prop("disabled", false);
+                $("#save").prop("disabled", true);
+                $("#update").prop("disabled", true);
+                $("#reset").prop("disabled", true);
+
+                $("#stuName").focus();
+            }
+
+
+            function saveStudent() {
+                var jsonStr = validateAndGetFormData();
+                if (jsonStr === "") {
+                    return;
+                }
+                var putReqStr = createPUTRequest("90938334|-31949273722731220|90952378",
+                        jsonStr, "STUDENT-TABLE", "SCHOOL-DB");
+                alert(putReqStr);
+                jQuery.ajaxSetup({async: false});
+                var resultObj = executeCommand(putReqStr,
+                        "http://api.login2explore.com:5577", "/api/iml");
+                alert(JSON.stringify(resultObj));
+                jQuery.ajaxSetup({async: true});
+                resetForm();
+                $("#stuName").focus();
+            }
+            function updateStudent() {
+                $("#update").prop("disabled", true);
+                jsonChg = validateAndGetFormData();
+                var updateRequest = createUPDATERecordRequest("90938334|-31949273722731220|90952378", jsonChg, "STUDENT-TABLE", "SCHOOL-DB", localStorage.getItem('recno'));
+                jQuery.ajaxSetup({async: false});
+                var resJsonObj = executeCommand(updateRequest, "http://api.login2explore.com:5577", "/api/iml");
+                jQuery.ajaxSetup({async: true});
+                console.log(resJsonObj);
+                $("#stuName").focus();
+            }
+        </script>
+        <!--function getstu() {
+                var stuRollJsonObj = getStuRoll();
+                var getRequest = createGET_BY_KEYRequest("90938334|-31949273722731220|90952378", "STUDENT-TABLE", "SCHOOL-DB", stuRollJsonObj);
+                jQuery.ajaxSetup({async: false});
+                var resJsonObj = executeCommand(getRequest, "http://api.login2explore.com:5577", "/api/iml");
+                jQuery.ajaxSetup({async: true});
+                if (resJsonObj.status === 400)
+                {
+                    $("#save").prop("disabled", false);
+                    $("#reset").prop("disabled", false);
+                    $("#stuName").focus();
+                }
+                else if (resJsonObj.status === 200)
+                {
+                    $("#Rollno").prop("disabled", true);
+                    fillData(resJsonObj);
+                    $("#update").prop("disabled", false);
+                    $("#reset").prop("disabled", false);
+
+                    $("#Rollno").focus();
+                }
+            }
+            function saveRecNo2LS(jsonObj){
+                var lvData=JSON.parse(jsonObj.data);
+                localStorage.setItem('recno',lvData.rec_no);
+            }
+            function getStuRoll(){
+                var Rollno=$("#Rollno").val();
+                var jsonT={
+                    id:Rollno
+                };
+                return JSON.stringify(jsonT)
+            }
+            function fillData(jsonObj)
+            {
+                saveRecNo2LS(jsonObj);
+                var record=JSON.parse(jsonObj.data).record;
+                 $("#Rollno").val(record.Roll no)
+                $("#stuName").val(record.name);
+                $("#class").val(record.class);
+                $("#add").val(record.address);
+                $("#inputbd").val(record.Enrollment_Date);
+                $("#inputdate").val(record.Birthday);
+            }-->
+
+    </body>
+</html>
